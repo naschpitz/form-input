@@ -11,7 +11,21 @@ npm install --save @naschpitz/form-input
 ```
 
 ## Usage
+App.css
+```css
+.container {
+    margin-top: 50px;
+    font-size: 14px;
+}
 
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
+```
+
+
+App.js
 ```jsx
 import React, {useState} from 'react';
 import _ from 'lodash';
