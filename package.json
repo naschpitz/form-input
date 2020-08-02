@@ -1,6 +1,6 @@
 {
   "name": "@naschpitz/form-input",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A multitype form input field for React.js and Boostrap 4, can handle numeric, string, datetime, checkbox, select and textarea types.",
   "author": "Bruno Naschpitz",
   "license": "MIT",
@@ -38,9 +38,6 @@
     "react-dom": "^16.2.0",
     "react-icons": "^3.8.0",
     "react-number-format": "^4.3.1"
-  },
-  "peerDependencies": {
-    "react": "^16.0.0"
   },
   "devDependencies": {
     "microbundle-crl": "^0.13.10",
