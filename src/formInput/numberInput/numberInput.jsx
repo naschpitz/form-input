@@ -49,6 +49,34 @@ const NumberInput = (props) => {
         return style;
     }
 
+    function getDecimalSeparator() {
+        //fallback
+        let decSep = ".";
+
+        try {
+            // this works in FF, Chrome, IE, Safari and Opera
+            let sep = parseFloat(3/2).toLocaleString().substring(1,2);
+
+            if (sep === '.' || sep === ',') {
+                decSep = sep;
+            }
+        }
+
+        catch(e) {}
+
+        return decSep;
+    };
+
+    function getThousandSeparator() {
+        switch (getDecimalSeparator()) {
+            case '.':
+              return ',';
+
+            case ',':
+              return '.';
+        }
+    };
+
     function onBlur(event) {
         const target = event.target;
         const name = target.name;
@@ -103,7 +131,7 @@ const NumberInput = (props) => {
         <div className={"input-group " + getInputGroupSizeClassName(props.size)}>
             {props.prepend ?
                 <div className="input-group-prepend">
-                    <span className="input-group-text">{this.props.prepend}</span>
+                    <span className="input-group-text">{props.prepend}</span>
                 </div> : null
             }
             <NumberFormat name={props.name}

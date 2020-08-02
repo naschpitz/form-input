@@ -2,37 +2,78 @@ import React, {useState} from 'react';
 import _ from 'lodash';
 
 import FormInput from '@naschpitz/form-input';
+import './App.css';
 
 const App = () => {
-  const [ value, setValue ] = useState('');
-  const [ events, setEvents ] = useState([]);
+    const [ values, setValues ] = useState({});
+    const [ events, setEvents ] = useState([]);
 
-  function onEvent(event, name, value) {
-    setValue(value);
+    function onEvent(event, name, value) {
+        const newValues = _.clone(values);
+        values[name] = value;
 
-    const newEvents = _.clone(events);
-    newEvents.push({event: event, name: name, value: value});
+        setValues(newValues);
 
-    setEvents(newEvents);
-  }
+        const newEvents = _.clone(events);
+        newEvents.push({event: event, name: name, value: value});
 
-  return (
-    <div>
-      <FormInput label="My input"
-                 name="myInput"
-                 value={value}
-                 type="field"
-                 subtype="string"
-                 size="small"
-                 labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
-                 inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
-                 onEvent={onEvent}
-      />
+        setEvents(newEvents);
+    }
 
-      <h4>Events</h4>
-      {events.map((event) => (<div>{JSON.stringify(event)}</div>))}
-    </div>
-  );
+    const options = new Map();
+    options.set('', "Select Type");
+    options.set('bikes', "Merida, Cannondale, Specialized");
+    options.set('cars', "Ferrari, Porsche, Lamborghini");
+    options.set('planes', "Embraer, Boeing, Airbus");
+
+    return (
+        <div className="container">
+            <FormInput label="Name"
+                       name="name"
+                       value={_.get(values, 'name')}
+                       type="field"
+                       subtype="string"
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
+            <FormInput label="Type"
+                       name="type"
+                       value={_.get(values, 'type')}
+                       type="dropdown"
+                       subtype="string"
+                       size="small"
+                       options={options}
+                       search={true}
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
+            <FormInput label="Money"
+                       name="money"
+                       value={_.get(values, "money")}
+                       type="field"
+                       subtype="number"
+                       thousandSeparator={true}
+                       decimalScale={0}
+                       prepend="$"
+                       append=",00"
+                       allowNegative={false}
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
+            <div style={{marginTop: 50}}>
+                <h6>Events</h6>
+                {events.map((event) => (<div>{JSON.stringify(event)}</div>))}
+            </div>
+      </div>
+    );
 }
 
 export default App
