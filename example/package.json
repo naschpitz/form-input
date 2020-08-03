@@ -14,7 +14,7 @@
     "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "file:../node_modules/react-scripts",
     "@naschpitz/form-input": "file:..",
-    "@naschpitz/button-enhanced": "^1.0.13"
+    "@naschpitz/button-enhanced": "latest"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
