@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import ButtonEnhanced from '@naschpitz/button-enhanced';
+import '@naschpitz/button-enhanced/dist/index.css';
+
 import Checkbox from "./checkbox/checkbox.jsx";
 import GenericInput from "./genericInput/genericInput.jsx";
 import NumberInput from "./numberInput/numberInput.jsx";

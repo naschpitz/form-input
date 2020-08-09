@@ -25,12 +25,14 @@ App.css
 ```
 
 
-App.js
+App.jsx
 ```jsx
 import React, {useState} from 'react';
 import _ from 'lodash';
 
 import FormInput from '@naschpitz/form-input';
+import '@naschpitz/form-input/dist/index.css';
+
 import './App.css';
 
 const App = () => {
