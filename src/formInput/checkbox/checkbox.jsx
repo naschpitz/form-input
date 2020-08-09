@@ -36,7 +36,7 @@ const Checkbox = (props) => {
     }
 
     return (
-        <div id="checkbox">
+        <div id="checkbox" className="form-check">
             <input name={props.name}
                    disabled={props.disabled}
                    checked={value}
@@ -44,7 +44,7 @@ const Checkbox = (props) => {
                    onBlur={onBlur}
                    onFocus={onFocus}
                    type="checkbox"
-                   className={"form-control form-check-input " + getInputSizeClassName(props.size)}
+                   className={"form-check-input"}
             />
         </div>
     )
