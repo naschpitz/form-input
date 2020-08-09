@@ -27,6 +27,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "dependencies": {
+    "@naschpitz/button-enhanced": "^1.0.15",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "lodash": "^4.17.15",
@@ -37,8 +38,7 @@
     "react-dom": "^16.2.0",
     "react-icons": "^3.8.0",
     "react-modal": "^3.11.1",
-    "react-number-format": "^4.3.1",
-    "@naschpitz/button-enhanced": "latest"
+    "react-number-format": "^4.3.1"
   },
   "devDependencies": {
     "microbundle-crl": "^0.13.10",
