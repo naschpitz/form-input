@@ -124,6 +124,12 @@ const NumberInput = (props) => {
     }
 
     function onFocus() {
+        const target = event.target;
+        const name = target.name;
+
+        if (props.onEvent)
+            props.onEvent('onFocus', name);
+
         setHasFocus(true);
     }
 

@@ -17,12 +17,9 @@ const TextArea = (props) => {
     function onBlur(event) {
         const target = event.target;
         const name = target.name;
-        const newValue = target.value;
-
-        setValue(newValue);
 
         if (props.onEvent)
-            props.onEvent('onBlur', name, newValue);
+            props.onEvent('onBlur', name, value);
 
         setHasFocus(false);
     }
@@ -38,7 +35,13 @@ const TextArea = (props) => {
             props.onEvent('onChange', name, newValue);
     }
 
-    function onFocus() {
+    function onFocus(event) {
+        const target = event.target;
+        const name = target.name;
+
+        if (props.onEvent)
+            props.onEvent('onFocus', name);
+
         setHasFocus(true);
     }
 
