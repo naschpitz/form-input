@@ -54,7 +54,7 @@ const GenericInput = (props) => {
         setHasFocus(false);
     }
 
-    function onFocus() {
+    function onFocus(event) {
         const target = event.target;
         const name = target.name;
 

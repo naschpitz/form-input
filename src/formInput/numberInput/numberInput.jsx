@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import {getInputGroupSizeClassName, getType, onKeyPress} from "../../common/common.js";
 import NumberFormat from "react-number-format";
+import sToD from 'scientific-to-decimal';
 
 import './numberInput.css';
 
@@ -77,6 +78,10 @@ const NumberInput = (props) => {
         }
     };
 
+    function getValue() {
+        return (value || value === 0) ? sToD(value) : '';
+    }
+
     function onBlur(event) {
         const target = event.target;
         const name = target.name;
@@ -123,7 +128,7 @@ const NumberInput = (props) => {
             props.onEvent('onChange', name, newValue);
     }
 
-    function onFocus() {
+    function onFocus(event) {
         const target = event.target;
         const name = target.name;
 
@@ -142,7 +147,7 @@ const NumberInput = (props) => {
             }
             <NumberFormat name={props.name}
                           disabled={props.disabled}
-                          value={value}
+                          value={getValue()}
                           placeholder={props.placeholder}
                           onValueChange={onChange}
                           onFocus={onFocus}
