@@ -18,10 +18,10 @@ const TextArea = (props) => {
         const target = event.target;
         const name = target.name;
 
+        setHasFocus(false);
+
         if (props.onEvent)
             props.onEvent('onBlur', name, value);
-
-        setHasFocus(false);
     }
 
     function onChange(event) {
@@ -39,10 +39,10 @@ const TextArea = (props) => {
         const target = event.target;
         const name = target.name;
 
+        setHasFocus(true);
+
         if (props.onEvent)
             props.onEvent('onFocus', name);
-
-        setHasFocus(true);
     }
 
     return (

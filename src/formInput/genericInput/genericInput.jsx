@@ -48,20 +48,20 @@ const GenericInput = (props) => {
         const target = event.target;
         const name = target.name;
 
+        setHasFocus(true);
+
         if (props.onEvent)
             props.onEvent('onBlur', name, value);
-
-        setHasFocus(false);
     }
 
     function onFocus(event) {
         const target = event.target;
         const name = target.name;
 
+        setHasFocus(true);
+
         if (props.onEvent)
             props.onEvent('onFocus', name);
-
-        setHasFocus(true);
     }
 
     function onChange(event) {

@@ -98,10 +98,10 @@ const NumberInput = (props) => {
         if (props.subtype === 'percent' && (newValue || newValue === 0))
             newValue /= 100;
 
+        setHasFocus(false);
+
         if (props.onEvent)
             props.onEvent('onBlur', name, newValue);
-
-        setHasFocus(false);
     }
 
     function onChange(values) {
@@ -132,10 +132,10 @@ const NumberInput = (props) => {
         const target = event.target;
         const name = target.name;
 
+        setHasFocus(true);
+
         if (props.onEvent)
             props.onEvent('onFocus', name);
-
-        setHasFocus(true);
     }
 
     return (
