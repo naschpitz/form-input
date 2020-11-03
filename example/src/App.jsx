@@ -84,6 +84,19 @@ const App = () => {
                        onEvent={onEvent}
             />
 
+            <FormInput label="Date"
+                       name="date"
+                       value={_.get(values, "date")}
+                       type="field"
+                       subtype="date"
+                       thousandSeparator={true}
+                       allowNegative={false}
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
             <FormInput label="Check this"
                        name="check"
                        value={_.get(values, "check")}
