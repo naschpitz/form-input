@@ -42,13 +42,13 @@ const GenericInput = (props) => {
                 catch (error) { /* Do nothing. */ }
             }
         }
-    }, [props.type, props.value]);
+    }, [props.type, props.value, hasFocus]);
 
     function onBlur(event) {
         const target = event.target;
         const name = target.name;
 
-        setHasFocus(true);
+        setHasFocus(false);
 
         if (props.onEvent)
             props.onEvent('onBlur', name, value);

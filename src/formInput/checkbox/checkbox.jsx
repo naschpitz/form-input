@@ -14,7 +14,7 @@ const Checkbox = (props) => {
             return;
 
         setValue(props.value);
-    }, [props.value]);
+    }, [props.value, hasFocus]);
 
     function onBlur(event) {
         setHasFocus(false);
