@@ -8,11 +8,8 @@ const TextArea = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        if (hasFocus)
-            return;
-
         setValue(props.value);
-    }, [props.value, hasFocus]);
+    }, [props.value]);
 
     function onBlur(event) {
         const target = event.target;

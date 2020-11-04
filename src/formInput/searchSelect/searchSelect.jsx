@@ -14,9 +14,6 @@ const SearchSelect = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        if (hasFocus)
-            return;
-
         if (props.value != null)  //Will also pass for 'undefined' values.
             setValue(props.value);
 
@@ -25,7 +22,7 @@ const SearchSelect = (props) => {
 
         if (props.type === 'number')
             setValue((props.value || props.value === 0) ? Number(props.value) : null);
-    }, [props.type, props.value, hasFocus]);
+    }, [props.type, props.value]);
 
     useEffect(() => {
         let options = getOptions();

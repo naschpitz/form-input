@@ -11,9 +11,6 @@ const GenericInput = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        if (hasFocus)
-            return;
-
         //Will also pass for 'undefined' values.
         if (props.value == null) {
             setValue('');
@@ -42,7 +39,7 @@ const GenericInput = (props) => {
                 catch (error) { /* Do nothing. */ }
             }
         }
-    }, [props.type, props.value, hasFocus]);
+    }, [props.type, props.value]);
 
     function onBlur(event) {
         const target = event.target;

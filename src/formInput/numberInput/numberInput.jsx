@@ -12,9 +12,6 @@ const NumberInput = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        if (hasFocus)
-            return;
-
         //Will also pass for 'undefined' values.
         if (props.value == null) {
             setValue('');
@@ -36,7 +33,7 @@ const NumberInput = (props) => {
         }
 
         setValue(newValue);
-    }, [props.type, props.value, hasFocus]);
+    }, [props.type, props.value]);
 
     function getStyle() {
         const style = {};
