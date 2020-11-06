@@ -12,6 +12,8 @@ const TextArea = (props) => {
             setValue(null);
             return;
         }
+
+        setValue(props.value);
     }, [props.value]);
 
     function getValue(value) {
