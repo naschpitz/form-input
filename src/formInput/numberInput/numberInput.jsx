@@ -108,6 +108,8 @@ const NumberInput = (props) => {
         // This method called from NumberFormat has a peculiar behaviour: it will be triggered even when prop changed.
         // So, props.onEvent() was being called even if the value hasn't changed at all.
         // A check must be made to be sure that the value has really changed thus avoiding false prop.onEvent() calls.
+        console.log(newValue, value);
+
         const changed = newValue !== value;
 
         setValue(newValue);
