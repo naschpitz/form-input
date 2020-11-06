@@ -18,7 +18,7 @@ const SearchSelect = (props) => {
             setValue(props.value);
 
         else
-            setValue("");
+            setValue(null);
 
         if (props.type === 'number')
             setValue((props.value || props.value === 0) ? Number(props.value) : null);
@@ -53,6 +53,10 @@ const SearchSelect = (props) => {
         }
     }
 
+    function getValue(value) {
+        return value ? value : "";
+    }
+
     function onDropdownChange(event) {
         const target = event.target;
 
@@ -61,6 +65,9 @@ const SearchSelect = (props) => {
 
         if (props.type === 'number' || props.type === 'percent')
             value = (value || value === 0) ? Number(value) : null;
+
+        else
+            value = value ? value : null;
 
         setValue(value);
 
@@ -87,7 +94,7 @@ const SearchSelect = (props) => {
         return (
             <select name={props.name}
                     disabled={props.disabled}
-                    value={value}
+                    value={getValue(value)}
                     onBlur={onBlur}
                     onChange={onDropdownChange}
                     onFocus={onFocus}

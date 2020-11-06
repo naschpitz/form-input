@@ -107,6 +107,16 @@ const App = () => {
                        onEvent={onEvent}
             />
 
+            <FormInput label="Text Area"
+                       name="textarea"
+                       value={_.get(values, "textarea")}
+                       type="textarea"
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
             <div style={{marginTop: 50}}>
                 <h6>Events</h6>
                 {events.map((event) => (<div>{JSON.stringify(event)}</div>))}

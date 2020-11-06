@@ -8,19 +8,19 @@ import sToD from 'scientific-to-decimal';
 import './numberInput.css';
 
 const NumberInput = (props) => {
-    const [ value, setValue ] = useState('');
+    const [ value, setValue ] = useState(null);
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
         //Will also pass for 'undefined' values.
         if (props.value == null) {
-            setValue("");
+            setValue(null);
             return;
         }
 
         let newValue = props.value;
 
-        newValue = (newValue || newValue === 0) ? Number(newValue) : "";
+        newValue = (newValue || newValue === 0) ? Number(newValue) : null;
 
         if (newValue || newValue === 0) {
             if (props.type === 'percent' && (newValue || newValue === 0))
@@ -76,7 +76,7 @@ const NumberInput = (props) => {
     };
 
     function getValue() {
-        return (value || value === 0) ? sToD(value) : '';
+        return (value || value === 0) ? sToD(value) : "";
     }
 
     function onBlur(event) {
@@ -103,7 +103,7 @@ const NumberInput = (props) => {
 
     function onChange(values) {
         const name = props.name;
-        let newValue = values.floatValue;
+        let newValue = (values.floatValue || values.floatValue === 0) ? values.floatValue : null;
 
         // This method called from NumberFormat has a peculiar behaviour: it will be triggered even when prop changed.
         // So, props.onEvent() was being called even if the value hasn't changed at all.

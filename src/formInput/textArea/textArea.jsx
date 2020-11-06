@@ -8,8 +8,17 @@ const TextArea = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        setValue(props.value);
+        if (props.value == null) {
+            setValue(null);
+            return;
+        }
     }, [props.value]);
+
+    console.log(value);
+
+    function getValue(value) {
+        return value ? value : "";
+    }
 
     function onBlur(event) {
         const target = event.target;
@@ -24,8 +33,8 @@ const TextArea = (props) => {
     function onChange(event) {
         const target = event.target;
         const name = target.name;
-        const newValue = target.value;
 
+        const newValue = target.value ? target.value : null;
         setValue(newValue);
 
         if (props.onEvent)
@@ -51,8 +60,8 @@ const TextArea = (props) => {
                   rows={props.rows}
                   maxLength={props.maxLength}
                   style={{width: '100%'}}
-                  defaultValue={!props.readOnly ? value : undefined}
-                  value={props.readOnly ? value : undefined}
+                  defaultValue={!props.readOnly ? getValue(value) : undefined}
+                  value={props.readOnly ? getValue(value) : undefined}
                   placeholder={props.placeholder}
                   readOnly={props.readOnly}
         />

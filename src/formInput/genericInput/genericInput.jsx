@@ -5,15 +5,16 @@ import moment from "moment";
 import {getInputGroupSizeClassName, getType, onKeyPress} from "../../common/common.js";
 
 import './genericInput.css';
+import sToD from "scientific-to-decimal";
 
 const GenericInput = (props) => {
-    const [ value, setValue ] = useState('');
+    const [ value, setValue ] = useState(null);
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
         //Will also pass for 'undefined' values.
         if (props.value == null) {
-            setValue("");
+            setValue(null);
             return;
         }
 
@@ -27,12 +28,12 @@ const GenericInput = (props) => {
                 }
 
                 catch (error) {
-                    setValue("")
+                    setValue(null)
                 }
             }
 
             else
-                setValue("");
+                setValue(null);
         }
 
         if (props.type === 'datetime') {
@@ -42,14 +43,18 @@ const GenericInput = (props) => {
                 }
 
                 catch (error) {
-                    setValue("");
+                    setValue(null);
                 }
             }
 
             else
-                setValue("");
+                setValue(null);
         }
     }, [props.type, props.value]);
+
+    function getValue(value) {
+        return value ? value : "";
+    }
 
     function onBlur(event) {
         const target = event.target;
@@ -75,7 +80,7 @@ const GenericInput = (props) => {
         const target = event.target;
         const name = target.name;
 
-        let newValue = target.value;
+        let newValue = target.value ? target.value : null;
         setValue(newValue);
 
         newValue = (props.type === 'date' || props.type === 'datetime') ? new Date(newValue) : newValue;
@@ -88,7 +93,7 @@ const GenericInput = (props) => {
         <div id="input" className={"input-group " + getInputGroupSizeClassName(props.size)}>
             <input name={props.name}
                    disabled={props.disabled}
-                   value={value}
+                   value={getValue(value)}
                    placeholder={props.placeholder}
                    autoComplete={props.autoComplete != null ? (props.autoComplete ? "on" : "off") : "on"}
                    onChange={onChange}
