@@ -13,7 +13,7 @@ const GenericInput = (props) => {
     useEffect(() => {
         //Will also pass for 'undefined' values.
         if (props.value == null) {
-            setValue('');
+            setValue("");
             return;
         }
 
@@ -26,8 +26,13 @@ const GenericInput = (props) => {
                     setValue(moment(props.value).utc().format('YYYY-MM-DD'));
                 }
 
-                catch (error) { /* Do nothing. */ }
+                catch (error) {
+                    setValue("")
+                }
             }
+
+            else
+                setValue("");
         }
 
         if (props.type === 'datetime') {
@@ -36,8 +41,13 @@ const GenericInput = (props) => {
                     setValue(moment(props.value).format('YYYY-MM-DDTHH:mm:ss'));
                 }
 
-                catch (error) { /* Do nothing. */ }
+                catch (error) {
+                    setValue("");
+                }
             }
+
+            else
+                setValue("");
         }
     }, [props.type, props.value]);
 

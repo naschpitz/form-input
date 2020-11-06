@@ -18,7 +18,7 @@ const SearchSelect = (props) => {
             setValue(props.value);
 
         else
-            setValue('');
+            setValue("");
 
         if (props.type === 'number')
             setValue((props.value || props.value === 0) ? Number(props.value) : null);
@@ -127,10 +127,16 @@ const SearchSelect = (props) => {
 SearchSelect.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    options: PropTypes.oneOfType([PropTypes.array, PropTypes.instanceOf(Map)]).isRequired,
+    options: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.instanceOf(Map)
+    ]).isRequired,
     size: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
     search: PropTypes.bool,
     onEvent: PropTypes.func
 }

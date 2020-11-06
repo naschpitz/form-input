@@ -14,7 +14,7 @@ const NumberInput = (props) => {
     useEffect(() => {
         //Will also pass for 'undefined' values.
         if (props.value == null) {
-            setValue('');
+            setValue("");
             return;
         }
 
