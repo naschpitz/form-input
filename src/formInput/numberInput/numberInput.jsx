@@ -20,7 +20,7 @@ const NumberInput = (props) => {
 
         let newValue = props.value;
 
-        newValue = (newValue || newValue === 0) ? Number(newValue) : null;
+        newValue = (newValue || newValue === 0) ? Number(newValue) : "";
 
         if (newValue || newValue === 0) {
             if (props.type === 'percent' && (newValue || newValue === 0))
