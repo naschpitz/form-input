@@ -9,7 +9,7 @@ import './searchSelect.css';
 
 const SearchSelect = (props) => {
     const [ search, setSearch ] = useState(null);
-    const [ value, setValue ] = useState('');
+    const [ value, setValue ] = useState(null);
     const [ options, setOptions ] = useState([]);
     const [ hasFocus, setHasFocus ] = useState(false);
 
@@ -54,7 +54,7 @@ const SearchSelect = (props) => {
     }
 
     function getValue(value) {
-        return value ? value : "";
+        return value != null ? value : "";
     }
 
     function onDropdownChange(event) {

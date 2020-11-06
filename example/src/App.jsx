@@ -55,6 +55,18 @@ const App = () => {
                        onEvent={onEvent}
             />
 
+            <FormInput label="Verified"
+                       name="verified"
+                       value={_.get(values, 'verified')}
+                       type="dropdown"
+                       subtype="boolean"
+                       size="small"
+                       options={[{ value: "", text: "-- Select -- " }, { value: false, text: "False" }, { value: true, text: "True " }]}
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
             <FormInput label="Money"
                        name="money"
                        value={_.get(values, "money")}
