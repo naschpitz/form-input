@@ -14,8 +14,6 @@ const TextArea = (props) => {
         }
     }, [props.value]);
 
-    console.log(value);
-
     function getValue(value) {
         return value ? value : "";
     }
