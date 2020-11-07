@@ -60,8 +60,8 @@ const TextArea = (props) => {
                   rows={props.rows}
                   maxLength={props.maxLength}
                   style={{width: '100%'}}
-                  defaultValue={!props.readOnly ? getValue(value) : undefined}
-                  value={props.readOnly ? getValue(value) : undefined}
+                  defaultValue={props.readOnly ? getValue(value) : undefined}
+                  value={!props.readOnly ? getValue(value) : undefined}
                   placeholder={props.placeholder}
                   readOnly={props.readOnly}
         />
