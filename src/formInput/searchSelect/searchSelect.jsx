@@ -14,6 +14,9 @@ const SearchSelect = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
+        if (props.isLoading)
+            return;
+
         if (props.value != null)  //Will also pass for 'undefined' values.
             setValue(props.value);
 
@@ -145,6 +148,7 @@ SearchSelect.propTypes = {
         PropTypes.number
     ]),
     search: PropTypes.bool,
+    isLoading: PropTypes.bool,
     onEvent: PropTypes.func
 }
 

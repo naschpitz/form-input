@@ -8,6 +8,9 @@ const TextArea = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
+        if (props.isLoading)
+            return;
+
         if (props.value == null) {
             setValue(null);
             return;
@@ -75,6 +78,7 @@ TextArea.propTypes = {
     readOnly: PropTypes.bool,
     value: PropTypes.string,
     placeHolder: PropTypes.string,
+    isLoading: PropTypes.bool,
     onEvent: PropTypes.func
 }
 

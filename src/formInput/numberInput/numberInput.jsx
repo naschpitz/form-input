@@ -14,6 +14,9 @@ const NumberInput = (props) => {
     useEffect(() => {
         //Will also pass for 'undefined' values.
         if (props.value == null) {
+            if (props.isLoading)
+                return;
+
             setValue(null);
             return;
         }
@@ -185,6 +188,7 @@ NumberInput.propTypes = {
     negativeOnly: PropTypes.bool,
     placeholder: PropTypes.string,
     append: PropTypes.string,
+    isLoading: PropTypes.bool,
     onEvent: PropTypes.func
 }
 

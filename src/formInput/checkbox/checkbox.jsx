@@ -10,6 +10,9 @@ const Checkbox = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
+        if (props.isLoading)
+            return;
+
         setValue(props.value);
     }, [props]);
 
@@ -52,6 +55,7 @@ Checkbox.propTypes = {
     value: PropTypes.bool,
     disabled: PropTypes.bool,
     size: PropTypes.string,
+    isLoading: PropTypes.bool,
     onEvent: PropTypes.func,
 }
 
