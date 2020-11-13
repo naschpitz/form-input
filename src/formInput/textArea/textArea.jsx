@@ -14,7 +14,7 @@ const TextArea = (props) => {
         }
 
         setValue(props.value);
-    }, [props.value]);
+    }, [props]);
 
     function getValue(value) {
         return value ? value : "";

@@ -50,7 +50,7 @@ const GenericInput = (props) => {
             else
                 setValue(null);
         }
-    }, [props.type, props.value]);
+    }, [props]);
 
     function getValue(value) {
         return value ? value : "";

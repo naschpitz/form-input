@@ -33,7 +33,7 @@ const NumberInput = (props) => {
         }
 
         setValue(newValue);
-    }, [props.type, props.value]);
+    }, [props]);
 
     function getStyle() {
         const style = {};

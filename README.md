@@ -42,7 +42,7 @@ const App = () => {
 
     function onEvent(event, name, value) {
         const newValues = _.clone(values);
-        values[name] = value;
+        newValues[name] = value;
 
         setValues(newValues);
 
@@ -84,6 +84,18 @@ const App = () => {
                        onEvent={onEvent}
             />
 
+            <FormInput label="Verified"
+                       name="verified"
+                       value={_.get(values, 'verified')}
+                       type="dropdown"
+                       subtype="boolean"
+                       size="small"
+                       options={[{ value: "", text: "-- Select -- " }, { value: false, text: "False" }, { value: true, text: "True " }]}
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
             <FormInput label="Money"
                        name="money"
                        value={_.get(values, "money")}
@@ -94,6 +106,52 @@ const App = () => {
                        prepend="$"
                        append=",00"
                        allowNegative={false}
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
+            <FormInput label="Small Value"
+                       name="smallValue"
+                       value={_.get(values, "smallValue")}
+                       type="field"
+                       subtype="number"
+                       thousandSeparator={true}
+                       allowNegative={false}
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
+            <FormInput label="Date"
+                       name="date"
+                       value={_.get(values, "date")}
+                       type="field"
+                       subtype="date"
+                       thousandSeparator={true}
+                       allowNegative={false}
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
+            <FormInput label="Check this"
+                       name="check"
+                       value={_.get(values, "check")}
+                       type="checkbox"
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
+            <FormInput label="Text Area"
+                       name="textarea"
+                       value={_.get(values, "textarea")}
+                       type="textarea"
                        size="small"
                        labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
                        inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}

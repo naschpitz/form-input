@@ -13,7 +13,7 @@ const App = () => {
 
     function onEvent(event, name, value) {
         const newValues = _.clone(values);
-        values[name] = value;
+        newValues[name] = value;
 
         setValues(newValues);
 

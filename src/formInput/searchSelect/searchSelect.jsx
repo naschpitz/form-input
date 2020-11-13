@@ -22,7 +22,7 @@ const SearchSelect = (props) => {
 
         if (props.type === 'number')
             setValue((props.value || props.value === 0) ? Number(props.value) : null);
-    }, [props.type, props.value]);
+    }, [props]);
 
     useEffect(() => {
         let options = getOptions();
