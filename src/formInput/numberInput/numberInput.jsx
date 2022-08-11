@@ -26,7 +26,7 @@ const NumberInput = (props) => {
         newValue = (newValue || newValue === 0) ? Number(newValue) : null;
 
         if (newValue || newValue === 0) {
-            if (props.type === 'percent' && (newValue || newValue === 0))
+            if (props.subtype === 'percent' && (newValue || newValue === 0))
                 newValue *= 100;
 
             if (newValue !== Infinity && newValue !== -Infinity) {
@@ -115,7 +115,7 @@ const NumberInput = (props) => {
 
         setValue(newValue);
 
-        if (props.type === 'percent' && (newValue || newValue === 0))
+        if (props.subtype === 'percent' && (newValue || newValue === 0))
             newValue /= 100;
 
         if (props.positiveOnly)
