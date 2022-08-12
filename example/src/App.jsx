@@ -83,6 +83,20 @@ const App = () => {
                        onEvent={onEvent}
             />
 
+            <FormInput label="Percentage"
+                       name="percentage"
+                       value={_.get(values, "percentage")}
+                       type="field"
+                       subtype="percent"
+                       decimalScale={2}
+                       append="%"
+                       allowNegative={true}
+                       size="small"
+                       labelSizes={{sm: 12, md: 6, lg: 4, xl: 3}}
+                       inputSizes={{sm: 12, md: 6, lg: 8, xl: 9}}
+                       onEvent={onEvent}
+            />
+
             <FormInput label="Small Value"
                        name="smallValue"
                        value={_.get(values, "smallValue")}
