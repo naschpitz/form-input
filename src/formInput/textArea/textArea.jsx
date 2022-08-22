@@ -51,7 +51,7 @@ const TextArea = (props) => {
         setHasFocus(true);
 
         if (props.onEvent)
-            props.onEvent('onFocus', name);
+            props.onEvent('onFocus', name, value);
     }
 
     return (

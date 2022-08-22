@@ -89,14 +89,14 @@ const NumberInput = (props) => {
 
         newValue = (newValue || newValue === 0) ? Number(newValue) : null;
 
+        if (props.subtype === 'percent' && (newValue || newValue === 0))
+            newValue /= 100;
+
         if (props.positiveOnly && newValue)
             newValue = Math.abs(newValue);
 
         if (props.negativeOnly && newValue)
             newValue = - Math.abs(newValue);
-
-        if (props.subtype === 'percent' && (newValue || newValue === 0))
-            newValue /= 100;
 
         setHasFocus(false);
 
@@ -134,8 +134,13 @@ const NumberInput = (props) => {
 
         setHasFocus(true);
 
+        let newValue = value;
+
+        if (props.subtype === 'percent' && (newValue || newValue === 0))
+            newValue /= 100;
+
         if (props.onEvent)
-            props.onEvent('onFocus', name);
+            props.onEvent('onFocus', name, newValue);
     }
 
     return (
