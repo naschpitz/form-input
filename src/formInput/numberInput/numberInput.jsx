@@ -12,7 +12,7 @@ const NumberInput = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        if (props.isLoading)
+        if (props.isLoading || hasFocus)
             return;
 
         //Will also pass for 'undefined' values.

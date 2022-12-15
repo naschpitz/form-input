@@ -14,7 +14,7 @@ const SearchSelect = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        if (props.isLoading)
+        if (props.isLoading || hasFocus)
             return;
 
         if (props.value != null)  //Will also pass for 'undefined' values.

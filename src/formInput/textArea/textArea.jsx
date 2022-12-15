@@ -8,7 +8,7 @@ const TextArea = (props) => {
     const [ hasFocus, setHasFocus ] = useState(false);
 
     useEffect(() => {
-        if (props.isLoading)
+        if (props.isLoading || hasFocus)
             return;
 
         if (props.value == null) {
