@@ -1,200 +1,185 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 
-import {getInputGroupSizeClassName, getType, onKeyPress} from "../../common/common.js";
-import NumberFormat from "react-number-format";
-import sToD from 'scientific-to-decimal';
+import { getInputGroupSizeClassName, getType, onKeyPress } from "../../common/common.js"
+import NumberFormat from "react-number-format"
+import sToD from "scientific-to-decimal"
 
-import './numberInput.css';
+import "./numberInput.css"
 
-const NumberInput = (props) => {
-    const [ value, setValue ] = useState(null);
-    const [ hasFocus, setHasFocus ] = useState(false);
+const NumberInput = props => {
+  const [value, setValue] = useState(null)
+  const [hasFocus, setHasFocus] = useState(false)
 
-    useEffect(() => {
-        if (props.isLoading || hasFocus)
-            return;
+  useEffect(() => {
+    if (props.isLoading || hasFocus) return
 
-        //Will also pass for 'undefined' values.
-        if (props.value == null) {
-            setValue(null);
-            return;
-        }
-
-        let newValue = props.value;
-
-        newValue = (newValue || newValue === 0) ? Number(newValue) : null;
-
-        if (newValue || newValue === 0) {
-            if (props.subtype === 'percent' && (newValue || newValue === 0))
-                newValue *= 100;
-
-            if (newValue !== Infinity && newValue !== -Infinity) {
-                if (props.decimalScale)
-                    newValue = Math.abs(newValue) < 10 ** -props.decimalScale ? 0 : newValue;
-            }
-        }
-
-        setValue(newValue);
-    }, [props]);
-
-    function getStyle() {
-        const style = {};
-
-        if (props.align)
-            style.textAlign = props.align;
-
-        else
-            style.textAlign = 'right';
-
-        return style;
+    //Will also pass for 'undefined' values.
+    if (props.value == null) {
+      setValue(null)
+      return
     }
 
-    function getDecimalSeparator() {
-        //fallback
-        let decSep = ".";
+    let newValue = props.value
 
-        try {
-            // this works in FF, Chrome, IE, Safari and Opera
-            let sep = parseFloat(3/2).toLocaleString().substring(1,2);
+    newValue = newValue || newValue === 0 ? Number(newValue) : null
 
-            if (sep === '.' || sep === ',') {
-                decSep = sep;
-            }
-        }
+    if (newValue || newValue === 0) {
+      if (props.subtype === "percent" && (newValue || newValue === 0)) newValue *= 100
 
-        catch(e) {}
-
-        return decSep;
-    };
-
-    function getThousandSeparator() {
-        switch (getDecimalSeparator()) {
-            case '.':
-              return ',';
-
-            case ',':
-              return '.';
-        }
-    };
-
-    function getValue() {
-        return (value || value === 0) ? sToD(value) : "";
+      if (newValue !== Infinity && newValue !== -Infinity) {
+        if (props.decimalScale) newValue = Math.abs(newValue) < 10 ** -props.decimalScale ? 0 : newValue
+      }
     }
 
-    function onBlur(event) {
-        const target = event.target;
-        const name = target.name;
-        let   newValue = value;
+    setValue(newValue)
+  }, [props])
 
-        newValue = (newValue || newValue === 0) ? Number(newValue) : null;
+  function getStyle() {
+    const style = {}
 
-        if (props.subtype === 'percent' && (newValue || newValue === 0))
-            newValue /= 100;
+    if (props.align) style.textAlign = props.align
+    else style.textAlign = "right"
 
-        if (props.positiveOnly && newValue)
-            newValue = Math.abs(newValue);
+    return style
+  }
 
-        if (props.negativeOnly && newValue)
-            newValue = - Math.abs(newValue);
+  function getDecimalSeparator() {
+    //fallback
+    let decSep = "."
 
-        setHasFocus(false);
+    try {
+      // this works in FF, Chrome, IE, Safari and Opera
+      let sep = parseFloat(3 / 2)
+        .toLocaleString()
+        .substring(1, 2)
 
-        if (props.onEvent)
-            props.onEvent('onBlur', name, newValue);
+      if (sep === "." || sep === ",") {
+        decSep = sep
+      }
+    } catch (e) {}
+
+    return decSep
+  }
+
+  function getThousandSeparator() {
+    switch (getDecimalSeparator()) {
+      case ".":
+        return ","
+
+      case ",":
+        return "."
     }
+  }
 
-    function onChange(values) {
-        const name = props.name;
-        let newValue = (values.floatValue || values.floatValue === 0) ? values.floatValue : null;
+  function getValue() {
+    return value || value === 0 ? sToD(value) : ""
+  }
 
-        // This method called from NumberFormat has a peculiar behaviour: it will be triggered even when prop changed.
-        // So, props.onEvent() was being called even if the value hasn't changed at all.
-        // A check must be made to be sure that the value has really changed thus avoiding false prop.onEvent() calls.
-        const changed = newValue != value;
+  function onBlur(event) {
+    const target = event.target
+    const name = target.name
+    let newValue = value
 
-        setValue(newValue);
+    newValue = newValue || newValue === 0 ? Number(newValue) : null
 
-        if (props.subtype === 'percent' && (newValue || newValue === 0))
-            newValue /= 100;
+    if (props.subtype === "percent" && (newValue || newValue === 0)) newValue /= 100
 
-        if (props.positiveOnly)
-            newValue = Math.abs(newValue);
+    if (props.positiveOnly && newValue) newValue = Math.abs(newValue)
 
-        if (props.negativeOnly)
-            newValue = - Math.abs(newValue);
+    if (props.negativeOnly && newValue) newValue = -Math.abs(newValue)
 
-        if (props.onEvent && changed)
-            props.onEvent('onChange', name, newValue);
-    }
+    setHasFocus(false)
 
-    function onFocus(event) {
-        const target = event.target;
-        const name = target.name;
+    if (props.onEvent) props.onEvent("onBlur", name, newValue)
+  }
 
-        setHasFocus(true);
+  function onChange(values) {
+    const name = props.name
+    let newValue = values.floatValue || values.floatValue === 0 ? values.floatValue : null
 
-        let newValue = value;
+    // This method called from NumberFormat has a peculiar behaviour: it will be triggered even when prop changed.
+    // So, props.onEvent() was being called even if the value hasn't changed at all.
+    // A check must be made to be sure that the value has really changed thus avoiding false prop.onEvent() calls.
+    const changed = newValue != value
 
-        if (props.subtype === 'percent' && (newValue || newValue === 0))
-            newValue /= 100;
+    setValue(newValue)
 
-        if (props.onEvent)
-            props.onEvent('onFocus', name, newValue);
-    }
+    if (props.subtype === "percent" && (newValue || newValue === 0)) newValue /= 100
 
-    return (
-        <div className={"input-group " + getInputGroupSizeClassName(props.size)}>
-            {props.prepend ?
-                <div className="input-group-prepend">
-                    <span className="input-group-text">{props.prepend}</span>
-                </div> : null
-            }
-            <NumberFormat name={props.name}
-                          disabled={props.disabled}
-                          value={getValue()}
-                          placeholder={props.placeholder}
-                          onValueChange={onChange}
-                          onFocus={onFocus}
-                          onBlur={onBlur}
-                          onKeyPress={onKeyPress}
-                          className={"form-control"}
-                          allowNegative={props.allowNegative}
-                          thousandSeparator={props.thousandSeparator ? getThousandSeparator() : undefined}
-                          decimalSeparator={getDecimalSeparator()}
-                          decimalScale={props.decimalScale}
-                          autoComplete={props.autoComplete != null ? (props.autoComplete ? "on" : "off") : "on"}
-                          fixedDecimalScale={true}
-                          isNumericString={true}
-                          format={getType(props.type) === "text" ? (val) => (val) : undefined}
-                          style={getStyle()}
-            />
-            {props.append ?
-                <div className="input-group-append">
-                    <span className="input-group-text">{props.append}</span>
-                </div> : null
-            }
+    if (props.positiveOnly) newValue = Math.abs(newValue)
+
+    if (props.negativeOnly) newValue = -Math.abs(newValue)
+
+    if (props.onEvent && changed) props.onEvent("onChange", name, newValue)
+  }
+
+  function onFocus(event) {
+    const target = event.target
+    const name = target.name
+
+    setHasFocus(true)
+
+    let newValue = value
+
+    if (props.subtype === "percent" && (newValue || newValue === 0)) newValue /= 100
+
+    if (props.onEvent) props.onEvent("onFocus", name, newValue)
+  }
+
+  return (
+    <div className={"input-group " + getInputGroupSizeClassName(props.size)}>
+      {props.prepend ? (
+        <div className="input-group-prepend">
+          <span className="input-group-text">{props.prepend}</span>
         </div>
-    );
+      ) : null}
+      <NumberFormat
+        name={props.name}
+        disabled={props.disabled}
+        value={getValue()}
+        placeholder={props.placeholder}
+        onValueChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyPress={onKeyPress}
+        className={"form-control"}
+        allowNegative={props.allowNegative}
+        thousandSeparator={props.thousandSeparator ? getThousandSeparator() : undefined}
+        decimalSeparator={getDecimalSeparator()}
+        decimalScale={props.decimalScale}
+        autoComplete={props.autoComplete != null ? (props.autoComplete ? "on" : "off") : "on"}
+        fixedDecimalScale={true}
+        isNumericString={true}
+        format={getType(props.type) === "text" ? val => val : undefined}
+        style={getStyle()}
+      />
+      {props.append ? (
+        <div className="input-group-append">
+          <span className="input-group-text">{props.append}</span>
+        </div>
+      ) : null}
+    </div>
+  )
 }
 
 NumberInput.propTypes = {
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    size: PropTypes.string.isRequired,
-    disabled: PropTypes.bool,
-    autoComplete: PropTypes.bool,
-    value: PropTypes.number,
-    align: PropTypes.string,
-    decimalScale: PropTypes.number,
-    allowNegative: PropTypes.bool,
-    thousandSeparator: PropTypes.bool,
-    positiveOnly: PropTypes.bool,
-    negativeOnly: PropTypes.bool,
-    placeholder: PropTypes.string,
-    append: PropTypes.string,
-    isLoading: PropTypes.bool,
-    onEvent: PropTypes.func
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  autoComplete: PropTypes.bool,
+  value: PropTypes.number,
+  align: PropTypes.string,
+  decimalScale: PropTypes.number,
+  allowNegative: PropTypes.bool,
+  thousandSeparator: PropTypes.bool,
+  positiveOnly: PropTypes.bool,
+  negativeOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
+  append: PropTypes.string,
+  isLoading: PropTypes.bool,
+  onEvent: PropTypes.func,
 }
 
-export default NumberInput;
+export default NumberInput

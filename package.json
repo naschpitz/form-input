@@ -27,7 +27,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "dependencies": {
-    "@naschpitz/button-enhanced": "^1.0.20",
+    "@naschpitz/button-enhanced": "^1.0.21",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "lodash": "^4.17.15",
@@ -62,5 +62,13 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "max-len": 120,
+    "printWidth": 120,
+    "tabWidth": 2,
+    "arrowParens": "avoid"
+  }
 }

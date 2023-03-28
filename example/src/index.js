@@ -1,8 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx';
+import React from "react"
+import { createRoot } from "react-dom/client"
 
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import App from "./App.jsx"
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import "bootstrap"
+import "bootstrap/dist/css/bootstrap.css"
+
+const domNode = document.getElementById("root")
+const root = createRoot(domNode)
+
+root.render(<App />)

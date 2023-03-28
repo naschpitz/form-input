@@ -1,62 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 
-import {getInputSizeClassName} from "../../common/common.js";
+import { getInputSizeClassName } from "../../common/common.js"
 
-import './checkbox.css';
+import "./checkbox.css"
 
-const Checkbox = (props) => {
-    const [ value, setValue ] = useState(false);
-    const [ hasFocus, setHasFocus ] = useState(false);
+const Checkbox = props => {
+  const [value, setValue] = useState(false)
+  const [hasFocus, setHasFocus] = useState(false)
 
-    useEffect(() => {
-        if (props.isLoading)
-            return;
+  useEffect(() => {
+    if (props.isLoading) return
 
-        setValue(props.value);
-    }, [props]);
+    setValue(props.value)
+  }, [props])
 
-    function onBlur(event) {
-        setHasFocus(false);
-    }
+  function onBlur(event) {
+    setHasFocus(false)
+  }
 
-    function onChange(event) {
-        const target = event.target;
-        const name = target.name;
-        const newValue = target.checked;
+  function onChange(event) {
+    const target = event.target
+    const name = target.name
+    const newValue = target.checked
 
-        setValue(newValue);
+    setValue(newValue)
 
-        if (props.onEvent)
-            props.onEvent('onChange', name, newValue);
-    }
+    if (props.onEvent) props.onEvent("onChange", name, newValue)
+  }
 
-    function onFocus() {
-        setHasFocus(true);
-    }
+  function onFocus() {
+    setHasFocus(true)
+  }
 
-    return (
-        <div id="checkbox" className="form-check">
-            <input name={props.name}
-                   disabled={props.disabled}
-                   checked={value}
-                   onChange={onChange}
-                   onBlur={onBlur}
-                   onFocus={onFocus}
-                   type="checkbox"
-                   className={"form-check-input"}
-            />
-        </div>
-    )
+  return (
+    <div id="checkbox" className="form-check">
+      <input
+        name={props.name}
+        disabled={props.disabled}
+        checked={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        type="checkbox"
+        className={"form-check-input"}
+      />
+    </div>
+  )
 }
 
 Checkbox.propTypes = {
-    name: PropTypes.string.isRequired,
-    value: PropTypes.bool,
-    disabled: PropTypes.bool,
-    size: PropTypes.string,
-    isLoading: PropTypes.bool,
-    onEvent: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.bool,
+  disabled: PropTypes.bool,
+  size: PropTypes.string,
+  isLoading: PropTypes.bool,
+  onEvent: PropTypes.func,
 }
 
-export default Checkbox;
+export default Checkbox
