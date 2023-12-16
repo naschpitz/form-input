@@ -51,6 +51,46 @@ function getSizeClassName(sizes) {
     return className;
 }
 
+function getAlignmentClassName(aligment, label, field) {
+    switch (aligment) {
+        case "left": {
+            if (label)
+                return "text-left";
+
+            if (field)
+                return "text-right";
+        }
+
+        case "right": {
+            if (label)
+                return "text-right";
+
+            if (field)
+                return "text-right";
+        }
+
+        case "center": {
+            if (label)
+                return "text-center";
+
+            if (field)
+                return "text-center";
+        }
+
+        case "no-gap": {
+            if (label)
+                return "text-right";
+
+            if (field)
+                return "text-left";
+        }
+
+        default: {
+            return ""
+        }
+    }
+}
+
 function getType(type) {
     if (type === 'string')
         return "text";
@@ -88,4 +128,4 @@ function onKeyPress(event) {
     }
 }
 
-export {getInputSizeClassName, getInputGroupSizeClassName, getSizeClassName, getType, onKeyPress}
+export {getInputSizeClassName, getInputGroupSizeClassName, getSizeClassName, getAlignmentClassName, getType, onKeyPress}

@@ -9,7 +9,7 @@ import NumberInput from "./numberInput/numberInput.jsx"
 import SearchSelect from "./searchSelect/searchSelect.jsx"
 import TextArea from "./textArea/textArea.jsx"
 
-import { getSizeClassName } from "../common/common.js"
+import { getSizeClassName, getAlignmentClassName } from "../common/common.js"
 
 import "./formInput.css"
 
@@ -19,6 +19,9 @@ export default class FormInput extends Component {
 
     this.onClick = this.onClick.bind(this)
     this.renderInput = this.renderInput.bind(this)
+
+    this.labelClassName = getSizeClassName(props.labelSizes) + " " + getAlignmentClassName(props.alignment, true, false);
+    this.inputFieldClassName = getSizeClassName(props.inputSizes) + " " + getAlignmentClassName(props.alignment, false, true);
   }
 
   onClick() {
@@ -86,14 +89,14 @@ export default class FormInput extends Component {
           ) : (
             <div className="row vertical-center">
               {this.props.label ? (
-                <div className={getSizeClassName(this.props.labelSizes)}>
+                <div className={this.labelClassName}>
                   <span id="title" htmlFor={this.props.name}>
                     {this.props.label}:
                   </span>
                 </div>
               ) : null}
 
-              <div className={getSizeClassName(this.props.inputSizes)}>
+              <div className={this.inputFieldClassName}>
                 {this.props.children ? this.props.children : this.renderInput()}
               </div>
             </div>
